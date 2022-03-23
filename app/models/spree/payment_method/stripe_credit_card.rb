@@ -57,6 +57,16 @@ module Spree
         end
       end
 
+      def gateway
+        gateway_options = preferences.to_hash
+        gateway_options[:login] = gateway_options[:secret_key]
+        gateway_options.delete :login if gateway_options.key?(:login) && gateway_options[:login].nil?
+        if gateway_options[:server]
+          ActiveMerchant::Billing::Base.mode = gateway_options[:server].to_sym
+        end
+        @gateway ||= gateway_class.new(gateway_options)
+      end
+
       def payment_profiles_supported?
         true
       end

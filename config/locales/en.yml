@@ -3,3 +3,9 @@
 
 en:
   hello: Hello world
+  spree:
+    secret_key: Secret key
+    publishable_key: Publishable Key
+    v3_elements: V3 Elements
+    v3_intents: V3 Intents
+    stripe_country: Stripe country
